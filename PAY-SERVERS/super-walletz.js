@@ -5,15 +5,17 @@ app.use(express.json());
 
 // Endpoint para iniciar Super Walletz
 app.post('/pay', (req, res) => {
+    console.log("entre");
     const { amount, currency, description, callback_url } = req.body;
 
     // Simula una respuesta inicial exitosa
-    res.status(200).send({ transaction_id: 'trx_' + Math.floor(Math.random() * 100000) });
+    const transaction_id = 'trx_' + Math.floor(Math.random() * 100000)
+    res.status(200).send({ transaction_id: transaction_id });
 
     // Simula el envío del webhook tras un tiempo de 5 segundos
     setTimeout(() => {
         const webhookResponse = {
-            transaction_id: 'trx_' + Math.floor(Math.random() * 100000),
+            transaction_id: transaction_id,
             status: 'success'
         };
 
